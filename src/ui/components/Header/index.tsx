@@ -10,8 +10,8 @@ export const Header = () => {
           <Nav.Link as={Link} to="/">
             Home
           </Nav.Link>
-          <Nav.Link as={Link} to="/folders">
-            Folders
+          <Nav.Link as={Link} to="/another-page">
+            Another page
           </Nav.Link>
         </Nav>
       </Container>

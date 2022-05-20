@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { AppLayout } from "./components/AppLayout";
 
 const Home = lazy(() => import("./pages/Home"));
+const AnotherPage = lazy(() => import("./pages/AnotherPage"));
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<AppLayout />}>
               <Route index element={<Home />} />
+              <Route path="/another-page" element={<AnotherPage />} />
             </Route>
           </Routes>
         </Suspense>
