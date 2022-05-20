@@ -5,7 +5,7 @@ import { Package } from "../../domain/package";
 const packagesRetrievalSlice = createSlice({
   name: "packageRetrieval",
   initialState: {
-    packages: [],
+    packages: null,
     fetching: false,
     error: null
   } as AppState["packageRetrieval"],
@@ -13,7 +13,7 @@ const packagesRetrievalSlice = createSlice({
     retrieveAllPackages: (
       state,
       action: PayloadAction<{ criteria: string }>
-    ) => ({ ...state, fetching: true, error: null }),
+    ) => ({ ...state, fetching: true, error: null, packages: null }),
     packagesRetrieved: (
       state,
       action: PayloadAction<{ packages: Package[] }>

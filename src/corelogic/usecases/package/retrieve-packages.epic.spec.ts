@@ -7,6 +7,7 @@ import { retrieveAllPackagesAction } from "./packageRetrievalSlice";
 import { SOME_PACKAGE } from "./test-fixtures/constants";
 
 describe("test retrieve packages use case", () => {
+  const criteria = "react";
   let store: Store<AppState>;
   let initialState: AppState;
   let packageGateway: InMemoryPackageGateway;
@@ -21,7 +22,7 @@ describe("test retrieve packages use case", () => {
       // given
       packageGateway.packages = [];
       // then
-      store.dispatch(retrieveAllPackagesAction());
+      store.dispatch(retrieveAllPackagesAction({ criteria }));
       // when
       expect(store.getState()).toEqual({
         ...initialState,
@@ -44,12 +45,12 @@ describe("test retrieve packages use case", () => {
       const error = new Error("something bad happened");
       packageGateway.error = error;
       // when
-      store.dispatch(retrieveAllPackagesAction());
+      store.dispatch(retrieveAllPackagesAction({ criteria }));
       // then
       expect(store.getState()).toEqual({
         ...initialState,
         packageRetrieval: {
-          packages: [],
+          packages: null,
           fetching: false,
           error: error
         }

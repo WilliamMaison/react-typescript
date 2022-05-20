@@ -6,6 +6,7 @@ import { PackageCard } from "../PackageCard";
 import { ErrorMessage } from "../../../../components/ErrorMessage";
 import { Spinner } from "react-bootstrap";
 import { SearchInput } from "../SearchInput";
+import { NoContent } from "../../../../components/NoContent";
 
 export const Packages = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,13 @@ export const Packages = () => {
       <h2>Rechercher des packages</h2>
       <SearchInput onChange={setCriteria} />
       {!fetching &&
-        packages.map((npmPackage) => <PackageCard npmPackage={npmPackage} />)}
+        packages &&
+        packages.map((npmPackage, index) => (
+          <PackageCard key={`package-${index}`} npmPackage={npmPackage} />
+        ))}
+      {!fetching && packages && packages.length === 0 && (
+        <NoContent message="Aucun résultat correspondant à votre recherche." />
+      )}
       {error && <ErrorMessage error={error} />}
       {fetching && (
         <div className="d-flex flex-column flex-grow-1 align-items-center justify-content-center">

@@ -7,7 +7,7 @@ interface Props {
 
 export const PackageCard = ({ npmPackage }: Props) => {
   return (
-    <Card className="p-3">
+    <Card className="p-2 mt-2">
       <Card.Body className="d-flex flex-row">
         <div className="d-flex flex-column">
           <span className="text-secondary">Name</span>
